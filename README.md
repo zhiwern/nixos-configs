@@ -13,6 +13,9 @@ The nixos configuration does not use home manager nor does it use flakes (yet). 
 8. Removes firefox in favour of Chrome
 9. Switches to Linux zen kernel
 
+# Nvidia
+The pain of nvidia. But here is a file that has all the necessary configs to get it working.
+
 ---
 # Things to do
 - Add some zsh configurations here
