@@ -148,10 +148,17 @@
       maxfetch
       nnn
   ];
-  programs.zsh = {
-    enable = true;
-    ohMyZsh.enable = true;
-    enableCompletion = true;
+ programs.zsh = {
+    	enable = true;
+    	ohMyZsh.enable = true;
+    	enableCompletion = true;
+    	shellAliases = {
+    		ls = "eza -la";
+    		};
+    	ohMyZsh = {
+    		plugins = [ ];
+    		theme = "robbyrussell";
+  	};
   };
 
   
