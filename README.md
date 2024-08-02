@@ -16,7 +16,6 @@ The nixos configuration does not use home manager nor does it use flakes (yet). 
 # Nvidia
 The pain of nvidia. But here is a file that has all the necessary configs to get it working.
 
----
 # Things to do
 - Add some zsh configurations here
 - Use homemanager
