@@ -14,7 +14,7 @@ The nixos configuration does not use home manager nor does it use flakes (yet). 
 9. Switches to Linux zen kernel
 
 # Nvidia
-The pain of nvidia. File is dead.
+The pain of nvidia. File works on kernel 6.9. Change the kernel to use xanmod 6.9 or an equivalent version.
 
 # Things to do
 - Add some zsh configurations here
