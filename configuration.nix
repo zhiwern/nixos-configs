@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Include when u need nvidia support
+      #./nvidia-conf.nix
     ];
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
