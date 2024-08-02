@@ -14,7 +14,7 @@ The nixos configuration does not use home manager nor does it use flakes (yet). 
 9. Switches to Linux zen kernel
 
 # Nvidia
-The pain of nvidia. But here is a file that has all the necessary configs to get it working.
+The pain of nvidia. File is dead.
 
 # Things to do
 - Add some zsh configurations here
