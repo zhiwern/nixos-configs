@@ -152,6 +152,7 @@
     	enable = true;
     	ohMyZsh.enable = true;
     	enableCompletion = true;
+      interactiveShellInit = "fastfetch";
     	shellAliases = {
     		ls = "eza -la";
     		};
