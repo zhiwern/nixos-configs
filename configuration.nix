@@ -158,6 +158,7 @@
       interactiveShellInit = "fastfetch";
     	shellAliases = {
     		ls = "eza -la";
+        open-conf = "code /etc/nixos";
     		};
     	ohMyZsh = {
     		plugins = [ ];
