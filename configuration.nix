@@ -111,7 +111,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  	gedit
+  	  gedit
     	alacritty
     	vscode
     	cava
@@ -148,9 +148,10 @@
       scrcpy
       android-tools
       arduino-ide
-      maxfetch
+      fastfetch
       nnn
   ];
+ programs.noisetorch.enable = true;
  programs.zsh = {
     	enable = true;
     	ohMyZsh.enable = true;
@@ -165,8 +166,6 @@
     		theme = "robbyrussell";
   	};
   };
-
-  
   users.defaultUserShell = pkgs.zsh;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
