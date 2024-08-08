@@ -62,6 +62,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-utilities.enable = false;
   services.gnome.sushi.enable = true;
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -150,6 +151,10 @@
       arduino-ide
       fastfetch
       nnn
+      bottles
+      ani-cli
+      qbittorrent
+      mission-center
   ];
  programs.noisetorch.enable = true;
  programs.zsh = {
@@ -159,7 +164,7 @@
       interactiveShellInit = "fastfetch";
     	shellAliases = {
     		ls = "eza -la";
-        open-conf = "code /etc/nixos";
+        oconf = "code /etc/nixos";
     		};
     	ohMyZsh = {
     		plugins = [ ];
