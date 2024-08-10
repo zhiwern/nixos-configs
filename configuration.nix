@@ -124,7 +124,7 @@
     	jetbrains-mono
     	inter
     	obsidian
-    	discord
+      vesktop
     	telegram-desktop
     	helix
     	spotify
@@ -140,7 +140,6 @@
     	bibata-cursors
     	gnomeExtensions.blur-my-shell
     	gnomeExtensions.dock-from-dash
-    	neovim
     	libclang
     	nodejs
     	btop
@@ -149,8 +148,6 @@
       scrcpy
       android-tools
       arduino-ide
-      fastfetch
-      nnn
       bottles
       ani-cli
       qbittorrent
