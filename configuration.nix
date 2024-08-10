@@ -155,16 +155,19 @@
       ani-cli
       qbittorrent
       mission-center
+      gnome.nautilus
+      desktop-file-utils
   ];
  programs.noisetorch.enable = true;
  programs.zsh = {
     	enable = true;
     	ohMyZsh.enable = true;
     	enableCompletion = true;
-      interactiveShellInit = "fastfetch";
+      interactiveShellInit = "";
     	shellAliases = {
     		ls = "eza -la";
         oconf = "code /etc/nixos";
+        nbswitch = "sudo nixos-rebuild switch && update-desktop-database";
     		};
     	ohMyZsh = {
     		plugins = [ ];
