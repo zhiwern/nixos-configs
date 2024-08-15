@@ -17,7 +17,7 @@ The nixos configuration does not use home manager nor does it use flakes (yet). 
 The pain of nvidia. File works on kernel 6.9. Change the kernel to use xanmod 6.9 or an equivalent version.
 
 # Things to do
-- Add some zsh configurations here
+- ~~Add some zsh configurations here~~
 - Use homemanager
 - Use flakes
 - Change some gnome settings via configuration
