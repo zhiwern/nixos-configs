@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       # Include when u need nvidia support
       #./nvidia-conf.nix
+      ./unstable.nix
     ];
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -106,7 +107,15 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs;[
+    libstdcxx5
+    glibc
+    libgcc
+    gcc-unwrapped
+    stdenv.cc.cc
+  ];  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
