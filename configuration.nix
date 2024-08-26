@@ -123,9 +123,7 @@
   #  wget
   	  gedit
     	alacritty
-    	vscode
     	cava
-    	libgcc
     	python3
     	google-chrome
     	gnome.gnome-tweaks
@@ -163,6 +161,9 @@
       mission-center
       gnome.nautilus
       desktop-file-utils
+      zed-editor
+      tmux
+      fzf
   ];
  programs.noisetorch.enable = true;
  programs.zsh = {
