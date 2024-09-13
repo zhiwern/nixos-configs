@@ -1,0 +1,21 @@
+[language-server.nil]
+command = "nil"
+
+[[language]]
+name = "nix"
+auto-format = true
+
+[language-server.pylsp]
+command = "pylsp"
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "yapf" , args = [""] }
+
+[language-server.typscript-language-server]
+command = "typescript-language-server --stdio"
+
+[[language]]
+name = "typescript"
+auto-format = true
