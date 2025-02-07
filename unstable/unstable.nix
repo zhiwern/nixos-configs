@@ -1,19 +1,11 @@
 # For unstable packages
+# Remember to add the remote unstable nix branch and name it as <unstable> via the nix-channel command line
 { config, pkgs, ... }:
 
 let
-  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz";
-in
-{
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
-
+  unstable = import <unstable> { config = { allowUnfree = true; }; };
+in {
   environment.systemPackages = with pkgs; [
-    unstable.neovim
+    unstable.zed-editor
   ];
 }
