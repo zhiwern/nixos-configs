@@ -70,10 +70,10 @@
     layout = "us";
     variant = "";
   };
-
+  programs.direnv.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
+  
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -164,6 +164,14 @@
       zed-editor
       tmux
       fzf
+      vscodium
+      gparted
+      universal-android-debloater
+      whitesur-gtk-theme
+      whitesur-cursors
+      whitesur-icon-theme
+      gnomeExtensions.compiz-alike-magic-lamp-effect
+      nixfmt-rfc-style
   ];
  programs.noisetorch.enable = true;
  programs.zsh = {
