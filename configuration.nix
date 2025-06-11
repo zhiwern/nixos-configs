@@ -5,28 +5,28 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # Include when u need nvidia support
-      #./nvidia-conf.nix
-      ./unstable.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # Include when u need nvidia support
+    ./nvidia-conf.nix
+    #./unstable.nix
+  ];
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.kernelParams = ["mitigations=off"];
+  #boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelParams = [ "mitigations=off" ];
   # Bootloader.
   boot.loader = {
-  efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot"; # ← use the same mount point here.
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot"; # ← use the same mount point here.
     };
-  grub = {
-     efiSupport = true;
-     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-     device = "nodev";
+    grub = {
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
       # Change to true when dualbooting
-     useOSProber = false;
+      useOSProber = false;
     };
   };
   networking.hostName = "nixos"; # Define your hostname.
@@ -58,25 +58,35 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
+  services.xserver = {
+    enable = true;
+  };
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-utilities.enable = false;
+  services.xserver.desktopManager.gnome = {
+    enable = true;
+    extraGSettingsOverridePackages = [ pkgs.mutter ];
+    extraGSettingsOverrides = ''
+      [org.gnome.mutter]
+      experimental-features=['scale-monitor-framebuffer']
+    '';
+  };
+  services.gnome.core-apps.enable = false;
   services.gnome.sushi.enable = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-  programs.direnv.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  
+  programs.direnv.enable = true;
+  programs.steam.enable = true;
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  services.flatpak.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -97,7 +107,10 @@
   users.users.zhiwern = {
     isNormalUser = true;
     description = "zhiwern";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
     ];
   };
@@ -107,87 +120,108 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs;[
-    libstdcxx5
+  programs.nix-ld.libraries = with pkgs; [
     glibc
     libgcc
     gcc-unwrapped
     stdenv.cc.cc
-  ];  
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXi
+  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  	  gedit
-    	alacritty
-    	cava
-    	python3
-    	google-chrome
-    	gnome.gnome-tweaks
-    	go
-    	jetbrains-mono
-    	inter
-    	obsidian
-      vesktop
-    	telegram-desktop
-    	helix
-    	spotify
-    	git
-    	vlc
-    	obs-studio
-    	gimp
-    	inkscape
-    	eza
-    	zsh
-    	oh-my-zsh
-    	papirus-icon-theme
-    	bibata-cursors
-    	gnomeExtensions.blur-my-shell
-    	gnomeExtensions.dock-from-dash
-    	libclang
-    	nodejs
-    	btop
-    	gcc
-      pavucontrol
-      scrcpy
-      android-tools
-      arduino-ide
-      bottles
-      ani-cli
-      qbittorrent
-      mission-center
-      gnome.nautilus
-      desktop-file-utils
-      zed-editor
-      tmux
-      fzf
-      vscodium
-      gparted
-      universal-android-debloater
-      whitesur-gtk-theme
-      whitesur-cursors
-      whitesur-icon-theme
-      gnomeExtensions.compiz-alike-magic-lamp-effect
-      nixfmt-rfc-style
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    gedit
+    alacritty
+    cava
+    python3
+    google-chrome
+    gnome-tweaks
+    go
+    corefonts
+    jetbrains-mono
+    inter
+    obsidian
+    vesktop
+    telegram-desktop
+    helix
+    spotify
+    git
+    vlc
+    obs-studio
+    gimp
+    inkscape
+    eza
+    zsh
+    oh-my-zsh
+    papirus-icon-theme
+    bibata-cursors
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dock-from-dash
+    libclang
+    nodejs
+    btop
+    gcc
+    pavucontrol
+    scrcpy
+    android-tools
+    arduino-ide
+    ani-cli
+    qbittorrent
+    mission-center
+    nautilus
+    desktop-file-utils
+    zed-editor
+    tmux
+    fzf
+    vscodium
+    gparted
+    universal-android-debloater
+    whitesur-gtk-theme
+    whitesur-cursors
+    whitesur-icon-theme
+    gnomeExtensions.compiz-alike-magic-lamp-effect
+    nixfmt-rfc-style
+    wpsoffice
+    papers
+    postman
+    vscode-langservers-extracted
+    typescript-language-server
+    typescript
+    tailwindcss-language-server
+    nodePackages.prettier
+    colloid-icon-theme
+    teams-for-linux
+    code-cursor
+    anydesk
+    exfatprogs
+
   ];
- programs.noisetorch.enable = true;
- programs.zsh = {
-    	enable = true;
-    	ohMyZsh.enable = true;
-    	enableCompletion = true;
-      interactiveShellInit = "";
-    	shellAliases = {
-    		ls = "eza -la";
-        oconf = "code /etc/nixos";
-        nbswitch = "sudo nixos-rebuild switch && update-desktop-database";
-    		};
-    	ohMyZsh = {
-    		plugins = [ ];
-    		theme = "robbyrussell";
-  	};
+  programs.gnome-disks.enable = true;
+  programs.noisetorch.enable = true;
+  programs.zsh = {
+    enable = true;
+    ohMyZsh.enable = true;
+    enableCompletion = true;
+    interactiveShellInit = "";
+    shellAliases = {
+      ls = "eza -la";
+      oconf = "codium /etc/nixos";
+      nbswitch = "sudo nixos-rebuild switch";
+    };
+    ohMyZsh = {
+      plugins = [ ];
+      theme = "robbyrussell";
+    };
   };
   users.defaultUserShell = pkgs.zsh;
   # Some programs need SUID wrappers, can be configured further or are
@@ -215,6 +249,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
