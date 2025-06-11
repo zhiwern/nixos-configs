@@ -190,6 +190,7 @@
     whitesur-cursors
     whitesur-icon-theme
     gnomeExtensions.compiz-alike-magic-lamp-effect
+    gnomeExtensions.removable-drive-menu
     nixfmt-rfc-style
     wpsoffice
     papers
